@@ -7,33 +7,34 @@
  */
 
 var Controller_Main = require('../../../system/controller').Controller_Main,
-    Promise = require('promise').Promise;
+    Settings = require('../../../system/settings').Settings,
+    Promise = require('promise').Promise,
+    Response = require('../../../system/response').Response;
 
 
 (function(){
 
-    var Controller = exports.Controller = new Class({
+    var Controller = exports.Controller = new (new  Class({
 
         Extends: Controller_Main,
 
         '404_action': function(request, response) {
             var promise = new Promise();
-
-            core.log('In 404_action() of error controller');
-            //response.setStatus(404);
-
-            core.debug('request has session in 404_action', !nil(request.session));
-            core.debug('response has session in 404_action', !nil(response.session));
-
-            promise.resolve('true');
+            
+            response.setStatus(Response.Codes.notFound);
+            var s = new Settings();
+            s.find('error.layout', request, 'base', true).then(function(result){
+                response.view.set('layout',result);
+                promise.resolve('true');
+            });
             return promise;
         }
 
-    });
+    }))();
 
     exports.routes = [
         //name, 'method regex', regex match keys, controller object, key defaults
-        ['error','GET \\/error\\/(\\w+)', ['action'], new Controller(),{action: 'e404'}]
-    ]
-
+        ['error','GET \\/error\\/(\\w+)', ['action'], Controller,{action: 'e404'}]
+    ];
+    
 })();
