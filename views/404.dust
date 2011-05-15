@@ -1,0 +1,8 @@
+{#cssAddFile file="index_styles"/}
+
+{<content}
+   
+    <p>This is a 404 error page.</p>
+{/content}
+
+{>"{domain}_{theme}_{layout}"/}

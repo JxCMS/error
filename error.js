@@ -1,8 +1,7 @@
 /**
- * main file for loader module
+ * main file for error module
  *
- * Loader is used to concatenate javascript and css files for use on the browser. This is a
- * port of jxLoader's kohana module (sort of) as well as the base jxLoader class from PHP.
+ * The error module handles the routing of any cms errors (404, etc)
  */
 
 /**
