@@ -13,7 +13,7 @@ var routes = require('./controllers/error').routes;
 (function(){
 
 //needs to have an init() method for setting up the module
-exports.init = function(db, router){
+exports.init = function(db, router, domain){
     //load and intialize the loader controller
     //setup routing
     router.add(routes);
