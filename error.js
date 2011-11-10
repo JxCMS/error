@@ -13,7 +13,7 @@ var routes = require('./controllers/error').routes;
 (function(){
 
 //needs to have an init() method for setting up the module
-exports.init = function(db, router, domain){
+exports.init = function(router, domain, options) {
     //load and intialize the loader controller
     //setup routing
     router.add(routes);
@@ -24,21 +24,13 @@ exports.init = function(db, router, domain){
 //also needs an activate method - used to activate the module after installation
 exports.activate = function(){
 
-}
+};
 
 //and a deactivate method - removes anything we added to make the module not work anymore
 exports.deactivate = function(){
 
-    //call deinit
-    deinit();
-}
+};
 
-/**
- * deinit undoes any initialization  (specifically the routing)
- */
-function deinit() {
-
-}
 
 /**
  * From here down are specific functions that this module will need
